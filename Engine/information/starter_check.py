@@ -14,15 +14,17 @@ except:
         json.dump(TOKEN_TG, file)
 
 
+def cret_bd():
+    conn = sqlite3.connect(os.path.join(PATH, 'information', 'db.db'))
+    cursor = conn.cursor()
+    cursor.execute('''CREATE TABLE IF NOT EXISTS dolg(
+                    id int NOT NULL, 
+                    num int NOT NULL,
+                    time str NOT NULL)''')
+    conn.commit()
+    conn.close()
 
-conn = sqlite3.connect(os.path.join(PATH, 'information', 'db.db'))
-cursor = conn.cursor()
-cursor.execute('''CREATE TABLE IF NOT EXISTS dolg(
-                id int NOT NULL, 
-                num int NOT NULL,
-                time str NOT NULL)''')
-conn.commit()
-conn.close()
+cret_bd()
 
 def insert_num(time:str, id:int = 1, num:int = 2):
     conn = sqlite3.connect(os.path.join(PATH, 'information', 'db.db'))

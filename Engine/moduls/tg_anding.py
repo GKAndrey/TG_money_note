@@ -7,17 +7,21 @@ import sys
 bot = telebot.TeleBot(token=sc.TOKEN_TG)
 
 button_check = telebot.types.KeyboardButton('Перевiрити борг')
+check_btn = telebot.types.KeyboardButton('Перевiрити iсторiю')
 button_sell = telebot.types.KeyboardButton('Упаковка')
 button_add = telebot.types.KeyboardButton('Продаж')
-check_btn = telebot.types.KeyboardButton('Перевiрити iсторiю')
+borg_btn = telebot.types.KeyboardButton('Займ')
+delete_btn = telebot.types.KeyboardButton('Виплачено борг')
+
 strt = telebot.types.KeyboardButton("/start")
 
 start_kb = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 start_kb.add(strt)
-greet_kb = telebot.types.ReplyKeyboardMarkup(resize_keyboard=False)
-greet_kb.row(button_check)
-greet_kb.add(button_sell, button_add)
-greet_kb.row(check_btn)
+greet_kb = telebot.types.ReplyKeyboardMarkup(resize_keyboard=False, row_width= 2)
+greet_kb.row(button_check, check_btn)
+greet_kb.row(button_sell, borg_btn, button_add)
+greet_kb.row(delete_btn)
+# greet_kb.row(check_btn)
 
 bot.send_message('1439133134', "Я живий.", reply_markup=start_kb)
 
